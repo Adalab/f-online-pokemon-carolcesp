@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getApipokemon } from './services/pokeServices';
 import PokemonList from './components/PokemonList';
+import FilterNamePoke from './components/FilterNamePoke';
 import './App.css';
 
 class App extends Component {
@@ -65,19 +66,15 @@ class App extends Component {
   render() {
     const filterResult = this.filterPokemon();
     return (
-      <ul className="page__wrapper">
+      <div className="page__wrapper">
         <header className="header__content">
           <h1 className="header__title">POKEDEX</h1>
-          <div className="header__filter">
-            <label htmlFor="pokename">
-              <input onKeyUp={this.getFieldName} type="text" id="pokename" name="pokename" placeholder="Busca a tu pokemon favorito" className="poke__filter" ></input>
-            </label>
-          </div>
         </header>
         <main className="main__content">
+          <FilterNamePoke name={this.getFieldName}/>
           <PokemonList filterResult={filterResult} />
         </main>
-      </ul>
+      </div>
     );
   }
 }

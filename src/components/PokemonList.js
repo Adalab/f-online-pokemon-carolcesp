@@ -5,8 +5,8 @@ class PokemonList extends Component {
   render() {
     const {filterResult} = this.props;
       return (
-        <React.Fragment>
-          <ul className="poke__list">
+        <div className="main__list">
+          <ul className="list__pokemon">
               {filterResult.map((item,key)=>{
                 return(
                   <li className="poke__list--item" key={key}>
@@ -20,7 +20,7 @@ class PokemonList extends Component {
               )
             })}  
             </ul>
-        </React.Fragment>
+        </div>
       );
     };
   };
