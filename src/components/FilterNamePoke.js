@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 
 class FilterNamePoke extends Component {
   
@@ -13,7 +14,9 @@ class FilterNamePoke extends Component {
       );
     };
   };
-  
+FilterNamePoke.propType ={
+  name: PropTypes.func.isRequired
+};
 
 
 export default FilterNamePoke;
