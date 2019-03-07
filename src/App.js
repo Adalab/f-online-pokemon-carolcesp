@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getApipokemon } from './services/pokeServices';
+import { getApiPokemon } from './services/PokeServices';
 import PokemonList from './components/PokemonList';
 import FilterNamePoke from './components/FilterNamePoke';
 import './App.css';
@@ -8,26 +8,36 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      pokedex: [],
+      pokeName: [],
+      pokeInfo:{},
       fieldName: ''
     }
  
-    this.getPokemon = this.getPokemon.bind(this);
     this.getFieldName = this.getFieldName.bind(this);
   }
 
   componentDidMount(){
-    this.getSavedLocalStorage();
+    this.getPokemon();
   }
 
   getPokemon() {
-    getApipokemon()
-    .then(data => {
-      const results = data.results;
-      this.setState({
-        pokedex: results,
+    getApiPokemon()
+    .then(pokeName => {
+      console.log('punto1',pokeName)
+      const results = pokeName.results;
+      results.forEach(pokeUrl => {
+        fetch(pokeUrl.url)
+          .then(response => response.json())
+          .then(pokeInfo => {
+            const resultInfo = pokeUrl.items
+            console.log('punto2',pokeInfo)
+            this.setState({
+              pokeName: results,
+              pokeInfo: resultInfo
+          })
+          this.saveLocalStorage(this.state.pokeName,'pokeName');
+        })
       });
-      this.saveLocalStorage(this.state.pokedex,'pokedex');
     })
   }
 
@@ -36,10 +46,10 @@ class App extends Component {
   }
   
   getSavedLocalStorage(){
-    if(localStorage.getItem('pokedex') !== null){
-      const myPokemon = JSON.parse(localStorage.getItem('pokedex'));
+    if(localStorage.getItem('pokeName') !== null){
+      const myPokemon = JSON.parse(localStorage.getItem('pokeName'));
       this.setState({
-        pokedex: myPokemon,
+        pokeName: myPokemon,
       })
     } else {
       this.getPokemon();
@@ -54,7 +64,7 @@ class App extends Component {
   };
 
   filterPokemon(){
-    const filterName = this.state.pokedex
+    const filterName = this.state.pokeName
       .filter(item => {
       const name = item.name;
       return (name.toUpperCase().includes(this.state.fieldName.toUpperCase())) ? true : false;

@@ -10,11 +10,9 @@ class PokemonList extends Component {
               {filterResult.map((item,key)=>{
                 return(
                   <li className="poke__list--item" key={key}>
+                     
                       <div>
                         <h2 className="poke__list--name" >{item.name}</h2>
-                      </div>
-                      <div>
-                        <p className="poke__list--types">{item.type}</p>
                       </div>
                   </li>
               )
