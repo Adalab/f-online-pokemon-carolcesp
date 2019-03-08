@@ -3,24 +3,34 @@ import React, {Component} from "react";
 class PokemonList extends Component {
   
   render() {
-    const {filterResult} = this.props;
+   const {results} = this.props
       return (
-        <div className="main__list">
-          <ul className="list__pokemon">
-              {filterResult.map((item,key)=>{
-                return(
-                  <li className="poke__list--item" key={key}>
-                      <div>
-                        <h2 className="poke__list--name" >{item.name}</h2>
-                      </div>
-                      <div>
-                        <p className="poke__list--types">{item.type}</p>
-                      </div>
-                  </li>
-              )
-            })}  
-            </ul>
-        </div>
+        <section className="main__list">
+          <ul className="poke__list">
+            {results.map(item => {
+              return (
+                <li key={item.pokeId} className="poke__list--item">
+                  <div className="item__image">
+                    <img src={item.pokeImg} alt={item.pokeName} className="image__style" />
+                  </div>
+                  <div className="item__id">
+                    <p className="id__text">ID / {item.pokeId}</p>
+                  </div>
+                  <div className="item__name">
+                    <h2 className="name__title">{item.pokeName}</h2>
+                  </div>
+                  <div className="item__types">
+                    {item.type.map((type, index) => {
+                      return (
+                          <p key={index} className="types__text">{type}</p>
+                      );
+                    })}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       );
     };
   };
