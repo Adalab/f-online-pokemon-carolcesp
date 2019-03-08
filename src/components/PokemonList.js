@@ -5,24 +5,24 @@ class PokemonList extends Component {
   render() {
    const {results} = this.props
       return (
-        <div className="main__list">
+        <section className="main__list">
           <ul className="poke__list">
             {results.map(item => {
               return (
                 <li key={item.pokeId} className="poke__list--item">
-                  <div className="list__item--image">
-                    <img src={item.pokeImg} alt={item.pokeName} className="item__image" />
+                  <div className="item__image">
+                    <img src={item.pokeImg} alt={item.pokeName} className="image__style" />
                   </div>
-                  <div className="list__item--id">
-                    <h3 className="item__id">ID / {item.pokeId}</h3>
+                  <div className="item__id">
+                    <p className="id__text">ID / {item.pokeId}</p>
                   </div>
-                  <div className="list__item--name">
-                    <h2 className="item__name">{item.pokeName}</h2>
+                  <div className="item__name">
+                    <h2 className="name__title">{item.pokeName}</h2>
                   </div>
-                  <div className="list__item--types">
+                  <div className="item__types">
                     {item.type.map((type, index) => {
                       return (
-                          <span key={index} className="item__types">{type}</span>
+                          <p key={index} className="types__text">{type}</p>
                       );
                     })}
                   </div>
@@ -30,7 +30,7 @@ class PokemonList extends Component {
               );
             })}
           </ul>
-        </div>
+        </section>
       );
     };
   };
