@@ -12,8 +12,6 @@ class PokemonList extends Component {
                 <li key={item.pokeId} className="poke__list--item">
                   <div className="item__image">
                     <img src={item.pokeImg} alt={item.pokeName} className="image__style" />
-                  </div>
-                  <div className="item__id">
                     <p className="id__text">ID / {item.pokeId}</p>
                   </div>
                   <div className="item__name">
