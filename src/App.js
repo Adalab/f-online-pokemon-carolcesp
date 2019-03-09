@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {getApiPokemon} from './services/pokeServices';
 import PokemonList from './components/PokemonList';
 import FilterNamePoke from './components/FilterNamePoke';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   constructor(props){
@@ -91,6 +91,12 @@ class App extends Component {
     const filterPoke = this.filterPokemon();
     return (
       <div className="page__wrapper">
+      
+        <div className="shapes__content">
+          <div className="triangle__left"></div>
+          <div className="triangle__righ"></div>
+        </div>
+        
         <header className="header__content">
           <h1 className="header__title">POKEDEX</h1>
         </header>
@@ -98,6 +104,12 @@ class App extends Component {
           <FilterNamePoke name={this.getFieldName}/>
           <PokemonList filterPoke={filterPoke}/> 
         </main>
+        <footer>
+        <div className="shapes__content">
+          <div className="circle__left"></div>
+          <div className="circle__righ"></div>
+        </div>
+        </footer>
       </div>
     );
   }

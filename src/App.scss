@@ -1,5 +1,33 @@
-/* .page__wrapper{} */
-/* //app */
+html,body{
+  margin: 0;
+  padding: 0;
+}
+
+.page__wrapper{
+  background-color: rgb(254, 224, 55);
+  border: 2px solid black;
+}
+.shapes__content{
+  
+  display:flex;
+  justify-content: space-between;
+}
+.triangle__left {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 100px 100px 0 0;
+  border-color: black transparent transparent transparent;
+}
+.triangle__righ{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 100px 100px 0;
+  border-color: transparent black transparent transparent;
+  
+}
+
 .header__title{
   text-align: center;
 }
@@ -14,13 +42,15 @@
   width: 300px;
 }
 
-/* pokemonlist */
 
-/* .main__list */
+// .main__list{
+//   background-color: blue;
+// }
 .poke__list{
   display:flex;
   flex-wrap: wrap;
   list-style: none;
+
 }
 .poke__list--item{
   width: 250px;
@@ -57,4 +87,20 @@
   border-radius: 5px;
   padding: 5px;
   margin:10px;
+}
+
+/* footer */
+.circle__left{
+  height:70px;
+  width:130px;
+  clip-path: circle(60% at 6% 96%);
+  background:red;
+  
+}
+.circle__righ{
+  height:70px;
+  width:130px;
+  clip-path: circle(65% at 90% 100%);
+  background:red;
+
 }
