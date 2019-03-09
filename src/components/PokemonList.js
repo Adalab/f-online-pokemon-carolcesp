@@ -1,19 +1,18 @@
 import React, {Component} from "react";
+import PropTypes from 'prop-types';
 
 class PokemonList extends Component {
   
   render() {
-   const {results} = this.props
+   const {filterPoke} = this.props
       return (
         <section className="main__list">
           <ul className="poke__list">
-            {results.map(item => {
+            {filterPoke.map((item,key) => {
               return (
-                <li key={item.pokeId} className="poke__list--item">
+                <li key={key} className="poke__list--item">
                   <div className="item__image">
                     <img src={item.pokeImg} alt={item.pokeName} className="image__style" />
-                  </div>
-                  <div className="item__id">
                     <p className="id__text">ID / {item.pokeId}</p>
                   </div>
                   <div className="item__name">
@@ -34,7 +33,9 @@ class PokemonList extends Component {
       );
     };
   };
-  
+  PokemonList.propTypes = {
+    filterPokemons: PropTypes.array
+}
 
 
 export default PokemonList;
