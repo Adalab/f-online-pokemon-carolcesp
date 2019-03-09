@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getApiPokemon } from './services/PokeServices';
+import {getApiPokemon} from './services/pokeServices';
 import PokemonList from './components/PokemonList';
 import FilterNamePoke from './components/FilterNamePoke';
 import './App.css';
