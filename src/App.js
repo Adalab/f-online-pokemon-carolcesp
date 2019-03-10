@@ -53,7 +53,7 @@ class App extends Component {
               for (let i = 0; i < pokeUrl.types.length; i++) {
                 pokeType.push(pokeUrl.types[i].type.name);
               }
-            const poke = {
+            let poke = {
               pokeName: pokeUrl.name,
               pokeId:pokeUrl.id,
               pokeImg: pokeUrl.sprites.front_default,
@@ -63,8 +63,9 @@ class App extends Component {
             const resultInfo = this.state.myPokemon;
             resultInfo.push(poke);
             this.setState({
-              myPokemon: resultInfo
+              myPokemon: resultInfo.sort(((a, b) => a.pokeId - b.pokeId))
           });
+          console.log('estado',this.state.myPokemon)
           this.saveLocalStorage(this.state.myPokemon,'myPokemon');
         })
       }
