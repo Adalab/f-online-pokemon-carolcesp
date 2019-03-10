@@ -39,7 +39,6 @@ class App extends Component {
       const addId = poke.results.map((item,index) => {
         return {...item,id:index}
       });
-      console.log('añado id a poke >',addId)
       const pokeUrl = addId.map(item => {
         return item.url
       });
@@ -48,22 +47,20 @@ class App extends Component {
         fetch(pokeUrl[i])
           .then(response => response.json())
           .then(pokeUrl => { 
-        
             const pokeType = []; 
               for (let i = 0; i < pokeUrl.types.length; i++) {
                 pokeType.push(pokeUrl.types[i].type.name);
               }
-            const poke = {
+            let poke = {
               pokeName: pokeUrl.name,
               pokeId:pokeUrl.id,
               pokeImg: pokeUrl.sprites.front_default,
               type: pokeType
             };
-            console.log('que devuelve poke? >',poke)
             const resultInfo = this.state.myPokemon;
             resultInfo.push(poke);
             this.setState({
-              myPokemon: resultInfo
+              myPokemon: resultInfo.sort(((a, b) => a.pokeId - b.pokeId))
           });
           this.saveLocalStorage(this.state.myPokemon,'myPokemon');
         })
@@ -91,12 +88,10 @@ class App extends Component {
     const filterPoke = this.filterPokemon();
     return (
       <div className="page__wrapper">
-      
         <div className="shapes__content">
           <div className="triangle__left"></div>
           <div className="triangle__righ"></div>
         </div>
-        
         <header className="header__content">
           <h1 className="header__title">POKEDEX</h1>
         </header>
